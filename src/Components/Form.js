@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Form = (props) => {
-    const { submit, inputChange, formValues } = props;
+    const { submit, inputChange, formValues, formErrors } = props;
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -26,6 +26,7 @@ const Form = (props) => {
                         value={formValues.name}
                         onChange={onChange}
                     />
+                    <div className="form-error">{formErrors.name}</div>
                 </div>
                 <div className="form-group">
                     <h3>Choice of Size</h3>
@@ -39,6 +40,7 @@ const Form = (props) => {
                         <option value="medium">Medium</option>
                         <option value="large">Large</option>
                     </select>
+                    <div className="form-error">{formErrors.size}</div>
                 </div>
                 <div className="form-group">
                     <h3>Choice of Sauce</h3>
@@ -82,6 +84,7 @@ const Form = (props) => {
                             onChange={onChange}
                         />
                     </label>
+                    <div className="form-error">{formErrors.sauce}</div>
                 </div>
                 <div className="form-group">
                     <h3>Add Toppings</h3>
@@ -235,14 +238,17 @@ const Form = (props) => {
                     />
                 </div>
                 <div className="form-group">
-                    <input 
-                        name="quantity"
-                        type="number"
-                        min="1"
-                        max="100"
-                        value={formValues.quantity}
-                        onChange={onChange}
-                    />
+                    <div className="quantity">
+                        <input 
+                            name="quantity"
+                            type="number"
+                            min="1"
+                            max="100"
+                            value={formValues.quantity}
+                            onChange={onChange}
+                        />
+                        <div className="form-error">{formErrors.quantity}</div>
+                    </div>
                     <button>Add to Order $17.99</button>
                 </div>
             </form>

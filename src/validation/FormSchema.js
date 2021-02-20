@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
 const FormSchema = Yup.object().shape({
-    name: Yup.string(),
-    size: Yup.string(),
-    sauce: Yup.string(),
+    name: Yup.string().min(2, 'Name must be at least 2 characters').required('Name is required'),
+    size: Yup.string().required('Size is required'),
+    sauce: Yup.string().required('Please choose a sauce, or select No Sauce'),
     pepperoni: Yup.boolean(),
     sausage: Yup.boolean(),
     canadianBacon: Yup.boolean(),
@@ -20,7 +20,7 @@ const FormSchema = Yup.object().shape({
     extraCheese: Yup.boolean(),
     glutenFreeCrust: Yup.boolean(),
     instructions: Yup.string(),
-    quantity: Yup.number().positive().integer()
+    quantity: Yup.number().positive().integer().required('Quantity is required')
 });
 
 export default FormSchema;

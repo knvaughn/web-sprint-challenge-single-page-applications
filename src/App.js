@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import Form from './Components/Form';
 import FormSchema from './validation/FormSchema';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const initialFormValues = {
   name: '',
@@ -54,9 +55,21 @@ const initialFormErrors = {
 const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+  const [order, setOrder] = useState({});
+
+  const postPizzaOrder = (pizza) => {
+    axios.post('https://reqres.in/api/pizza', pizza)
+    .then((response) => {
+      console.log(response.data);
+      setOrder({...order, ...response.data});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   const formSubmit = () => {
-
+    postPizzaOrder(formValues);
   }
 
   const inputChange = (name, value) => {
@@ -85,6 +98,7 @@ const App = () => {
             submit={formSubmit} 
             inputChange={inputChange}
             formValues={formValues}
+            formErrors={formErrors}
           />
         </Route>
         <Route exact path="/">
