@@ -4,6 +4,11 @@ import Home from './Components/Home';
 import Form from './Components/Form';
 
 const App = () => {
+
+  const formSubmit = () => {
+    
+  }
+
   return (
     <div>
       <header>
@@ -15,7 +20,7 @@ const App = () => {
       </header>
       <Switch>
         <Route path="/pizza">
-          <Form />
+          <Form submit={formSubmit} />
         </Route>
         <Route exact path="/">
           <Home />
