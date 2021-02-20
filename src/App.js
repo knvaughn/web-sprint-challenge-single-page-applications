@@ -6,6 +6,48 @@ import Order from './Components/Order';
 import FormSchema from './validation/FormSchema';
 import * as Yup from 'yup';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const StyledApp = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  min-height: 100vh;
+
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #c10a26;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.3);
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Lobster', cursive;
+    font-weight: normal;
+    font-size: 2.5rem;
+  }
+
+  nav a {
+    padding: 5px 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: all .2s linear;
+
+    &:hover {
+      color: rgba(255,255,255,.7);
+    }
+  }
+`;
 
 const initialFormValues = {
   name: '',
@@ -102,9 +144,9 @@ const App = () => {
   }, [formValues])
 
   return (
-    <div>
+    <StyledApp>
       <header>
-        <h1>Lambda Eats</h1>
+        <Link to="/"><h1>Lambda Eats</h1></Link>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/pizza">Pizza</Link>
@@ -128,7 +170,7 @@ const App = () => {
           <Home />
         </Route>
       </Switch>
-    </div>
+    </StyledApp>
   );
 };
 export default App;
