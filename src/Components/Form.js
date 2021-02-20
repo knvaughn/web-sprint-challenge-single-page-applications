@@ -21,11 +21,49 @@ const Form = (props) => {
                 </div>
                 <div className="form-group">
                     <h3>Choice of Size</h3>
-                    <select>
+                    <select
+                        name="size"
+                    >
+                        <option value="">Select</option>
                         <option value="small">Small</option>
                         <option value="medium">Medium</option>
                         <option value="large">Large</option>
                     </select>
+                </div>
+                <div className="form-group">
+                    <h3>Choice of Sauce</h3>
+                    <label>
+                        Original Red 
+                        <input 
+                            name="sauce"
+                            type="radio"
+                            value="originalRed"
+                        />
+                    </label>
+                    <label>
+                        Garlic Ranch
+                        <input 
+                            name="sauce"
+                            type="radio"
+                            value="garlicRanch"
+                        />
+                    </label>
+                    <label>
+                        BBQ Sauce
+                        <input 
+                            name="sauce"
+                            type="radio"
+                            value="bbq"
+                        />
+                    </label>
+                    <label>
+                        No sauce
+                        <input 
+                            name="sauce"
+                            type="radio"
+                            value="noSauce"
+                        />
+                    </label>
                 </div>
                 <div className="form-group">
                     <h3>Add Toppings</h3>

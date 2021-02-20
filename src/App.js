@@ -3,10 +3,30 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Components/Home';
 import Form from './Components/Form';
 
+const initialFormValues = {
+  name: '',
+  size: '',
+  sauce: '',
+  pepperoni: false,
+  sausage: false,
+  canadianBacon: false,
+  spicyItalianSausage: false,
+  grilledChicken: false,
+  onions: false,
+  greenPepper: false,
+  dicedTomatoes: false,
+  blackOlives: false, 
+  roastedGarlic: false,
+  artichokeHearts: false,
+  threeCheese: false,
+  pineapple: false,
+  extraCheese: false
+}
+
 const App = () => {
 
   const formSubmit = () => {
-    
+
   }
 
   return (
