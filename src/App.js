@@ -20,7 +20,10 @@ const initialFormValues = {
   artichokeHearts: false,
   threeCheese: false,
   pineapple: false,
-  extraCheese: false
+  extraCheese: false,
+  glutenFreeCrust: false,
+  instructions: '',
+  quantity: 1
 }
 
 const App = () => {
