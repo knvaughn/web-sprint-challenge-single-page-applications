@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Components/Home';
 import Form from './Components/Form';
+import FormSchema from './validation/FormSchema';
 
 const initialFormValues = {
   name: '',
@@ -26,10 +27,46 @@ const initialFormValues = {
   quantity: 1
 }
 
+const initialFormErrors = {
+  name: '',
+  size: '',
+  sauce: '',
+  pepperoni: '',
+  sausage: '',
+  canadianBacon: '',
+  spicyItalianSausage: '',
+  grilledChicken: '',
+  onions: '',
+  greenPepper: '',
+  dicedTomatoes: '',
+  blackOlives: '', 
+  roastedGarlic: '',
+  artichokeHearts: '',
+  threeCheese: '',
+  pineapple: '',
+  extraCheese: '',
+  glutenFreeCrust: '',
+  instructions: '',
+  quantity: ''
+}
+
 const App = () => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   const formSubmit = () => {
 
+  }
+
+  const inputChange = (name, value) => {
+    Yup.reach(FormSchema, name)
+    .validate(value)
+      .then(() => {setFormErrors({...formErrors, [name]: ''})})
+      .catch((error) => {setFormErrors({...formErrors, [name]: error.errors[0]})})
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
   }
 
   return (
@@ -43,7 +80,11 @@ const App = () => {
       </header>
       <Switch>
         <Route path="/pizza">
-          <Form submit={formSubmit} />
+          <Form 
+            submit={formSubmit} 
+            inputChange={inputChange}
+            formValues={formValues}
+          />
         </Route>
         <Route exact path="/">
           <Home />

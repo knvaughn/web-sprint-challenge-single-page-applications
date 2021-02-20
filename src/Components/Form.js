@@ -1,11 +1,17 @@
 import React from 'react';
 
 const Form = (props) => {
-    const { submit } = props;
+    const { submit, inputChange, formValues } = props;
 
     const onSubmit = (event) => {
         event.preventDefault();
         submit();
+    }
+
+    const onChange = (event) => {
+        const { name, value, type, checked } = event.target;
+        const returnValue = type === 'checkbox' ? checked : value;
+        inputChange(name, returnValue);
     }
 
     return (
@@ -17,12 +23,16 @@ const Form = (props) => {
                     <input 
                         name="name"
                         type="text"
+                        value={formValues.name}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="form-group">
                     <h3>Choice of Size</h3>
                     <select
                         name="size"
+                        value={formValues.size}
+                        onChange={onChange}
                     >
                         <option value="">Select</option>
                         <option value="small">Small</option>
@@ -38,6 +48,8 @@ const Form = (props) => {
                             name="sauce"
                             type="radio"
                             value="originalRed"
+                            checked={formValues.sauce === 'originalRed'}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -46,6 +58,8 @@ const Form = (props) => {
                             name="sauce"
                             type="radio"
                             value="garlicRanch"
+                            checked={formValues.sauce === 'garlicRanch'}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -54,6 +68,8 @@ const Form = (props) => {
                             name="sauce"
                             type="radio"
                             value="bbq"
+                            checked={formValues.sauce === 'bbq'}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -62,6 +78,8 @@ const Form = (props) => {
                             name="sauce"
                             type="radio"
                             value="noSauce"
+                            checked={formValues.sauce === 'noSauce'}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
@@ -72,6 +90,8 @@ const Form = (props) => {
                         <input 
                             name="pepperoni"
                             type="checkbox"
+                            checked={formValues.pepperoni}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -79,6 +99,8 @@ const Form = (props) => {
                         <input 
                             name="sausage"
                             type="checkbox"
+                            checked={formValues.sausage}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -86,6 +108,8 @@ const Form = (props) => {
                         <input 
                             name="canadianBacon"
                             type="checkbox"
+                            checked={formValues.canadianBacon}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -93,6 +117,8 @@ const Form = (props) => {
                         <input 
                             name="spicyItalianSausage"
                             type="checkbox"
+                            checked={formValues.spicyItalianSausage}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -100,6 +126,8 @@ const Form = (props) => {
                         <input 
                             name="grilledChicken"
                             type="checkbox"
+                            checked={formValues.grilledChicken}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -107,6 +135,8 @@ const Form = (props) => {
                         <input 
                             name="onions"
                             type="checkbox"
+                            checked={formValues.onions}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -114,6 +144,8 @@ const Form = (props) => {
                         <input 
                             name="greenPepper"
                             type="checkbox"
+                            checked={formValues.greenPepper}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -121,6 +153,8 @@ const Form = (props) => {
                         <input 
                             name="dicedTomatoes"
                             type="checkbox"
+                            checked={formValues.dicedTomatoes}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -128,6 +162,8 @@ const Form = (props) => {
                         <input 
                             name="blackOlives"
                             type="checkbox"
+                            checked={formValues.blackOlives}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -135,6 +171,8 @@ const Form = (props) => {
                         <input 
                             name="roastedGarlic"
                             type="checkbox"
+                            checked={formValues.roastedGarlic}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -142,6 +180,8 @@ const Form = (props) => {
                         <input 
                             name="artichokeHearts"
                             type="checkbox"
+                            checked={formValues.artichokeHearts}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -149,6 +189,8 @@ const Form = (props) => {
                         <input 
                             name="threeCheese"
                             type="checkbox"
+                            checked={formValues.threeCheese}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -156,6 +198,8 @@ const Form = (props) => {
                         <input 
                             name="pineapple"
                             type="checkbox"
+                            checked={formValues.pineapple}
+                            onChange={onChange}
                         />
                     </label>
                     <label>
@@ -163,6 +207,8 @@ const Form = (props) => {
                         <input 
                             name="extraCheese"
                             type="checkbox"
+                            checked={formValues.extraCheese}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
@@ -173,6 +219,8 @@ const Form = (props) => {
                         <input 
                             name="glutenFreeCrust"
                             type="checkbox"
+                            checked={formValues.glutenFreeCrust}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
@@ -182,6 +230,8 @@ const Form = (props) => {
                         name="instructions"
                         type="text"
                         placeholder="Anything else you'd like to add?"
+                        value={formValues.instructions}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="form-group">
@@ -190,6 +240,8 @@ const Form = (props) => {
                         type="number"
                         min="1"
                         max="100"
+                        value={formValues.quantity}
+                        onChange={onChange}
                     />
                     <button>Add to Order $17.99</button>
                 </div>
