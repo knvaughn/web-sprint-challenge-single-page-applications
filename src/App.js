@@ -3,6 +3,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Components/Home';
 import Form from './Components/Form';
 import FormSchema from './validation/FormSchema';
+import * as Yup from 'yup';
 
 const initialFormValues = {
   name: '',

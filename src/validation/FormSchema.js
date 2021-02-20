@@ -22,3 +22,5 @@ const FormSchema = Yup.object().shape({
     instructions: Yup.string(),
     quantity: Yup.number().positive().integer()
 });
+
+export default FormSchema;
