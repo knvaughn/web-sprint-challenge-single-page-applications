@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Form = (props) => {
-    const { submit, inputChange, formValues, formErrors } = props;
+    const { submit, inputChange, formValues, formErrors, price } = props;
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -25,6 +25,7 @@ const Form = (props) => {
                         type="text"
                         value={formValues.name}
                         onChange={onChange}
+                        data-cy="name"
                     />
                     <div className="form-error">{formErrors.name}</div>
                 </div>
@@ -34,6 +35,7 @@ const Form = (props) => {
                         name="size"
                         value={formValues.size}
                         onChange={onChange}
+                        data-cy="size"
                     >
                         <option value="">Select</option>
                         <option value="small">Small</option>
@@ -52,6 +54,7 @@ const Form = (props) => {
                             value="originalRed"
                             checked={formValues.sauce === 'originalRed'}
                             onChange={onChange}
+                            data-cy="originalRed"
                         />
                     </label>
                     <label>
@@ -62,6 +65,7 @@ const Form = (props) => {
                             value="garlicRanch"
                             checked={formValues.sauce === 'garlicRanch'}
                             onChange={onChange}
+                            data-cy="garlicRanch"
                         />
                     </label>
                     <label>
@@ -72,6 +76,7 @@ const Form = (props) => {
                             value="bbq"
                             checked={formValues.sauce === 'bbq'}
                             onChange={onChange}
+                            data-cy="bbq"
                         />
                     </label>
                     <label>
@@ -82,6 +87,7 @@ const Form = (props) => {
                             value="noSauce"
                             checked={formValues.sauce === 'noSauce'}
                             onChange={onChange}
+                            data-cy="noSauce"
                         />
                     </label>
                     <div className="form-error">{formErrors.sauce}</div>
@@ -95,6 +101,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.pepperoni}
                             onChange={onChange}
+                            data-cy="pepperoni"
                         />
                     </label>
                     <label>
@@ -104,6 +111,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.sausage}
                             onChange={onChange}
+                            data-cy="sausage"
                         />
                     </label>
                     <label>
@@ -113,6 +121,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.canadianBacon}
                             onChange={onChange}
+                            data-cy="canadianBacon"
                         />
                     </label>
                     <label>
@@ -122,6 +131,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.spicyItalianSausage}
                             onChange={onChange}
+                            data-cy="spicyItalianSausage"
                         />
                     </label>
                     <label>
@@ -131,6 +141,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.grilledChicken}
                             onChange={onChange}
+                            data-cy="grilledChicken"
                         />
                     </label>
                     <label>
@@ -140,6 +151,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.onions}
                             onChange={onChange}
+                            data-cy="onions"
                         />
                     </label>
                     <label>
@@ -149,6 +161,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.greenPepper}
                             onChange={onChange}
+                            data-cy="greenPepper"
                         />
                     </label>
                     <label>
@@ -158,6 +171,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.dicedTomatoes}
                             onChange={onChange}
+                            data-cy="dicedTomatoes"
                         />
                     </label>
                     <label>
@@ -167,6 +181,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.blackOlives}
                             onChange={onChange}
+                            data-cy="blackOlives"
                         />
                     </label>
                     <label>
@@ -176,6 +191,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.roastedGarlic}
                             onChange={onChange}
+                            data-cy="roastedGarlic"
                         />
                     </label>
                     <label>
@@ -185,6 +201,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.artichokeHearts}
                             onChange={onChange}
+                            data-cy="artichokeHearts"
                         />
                     </label>
                     <label>
@@ -194,6 +211,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.threeCheese}
                             onChange={onChange}
+                            data-cy="threeCheese"
                         />
                     </label>
                     <label>
@@ -203,6 +221,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.pineapple}
                             onChange={onChange}
+                            data-cy="pineapple"
                         />
                     </label>
                     <label>
@@ -212,6 +231,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.extraCheese}
                             onChange={onChange}
+                            data-cy="extraCheese"
                         />
                     </label>
                 </div>
@@ -224,6 +244,7 @@ const Form = (props) => {
                             type="checkbox"
                             checked={formValues.glutenFreeCrust}
                             onChange={onChange}
+                            data-cy="glutenFreeCrust"
                         />
                     </label>
                 </div>
@@ -235,6 +256,7 @@ const Form = (props) => {
                         placeholder="Anything else you'd like to add?"
                         value={formValues.instructions}
                         onChange={onChange}
+                        data-cy="instructions"
                     />
                 </div>
                 <div className="form-group">
@@ -246,10 +268,11 @@ const Form = (props) => {
                             max="100"
                             value={formValues.quantity}
                             onChange={onChange}
+                            data-cy="quantity"
                         />
                         <div className="form-error">{formErrors.quantity}</div>
                     </div>
-                    <button>Add to Order $17.99</button>
+                    <button data-cy="submit">Add to Order ${formValues.glutenFreeCrust ? formValues.quantity * (price + 1) : price * formValues.quantity}</button>
                 </div>
             </form>
         </div>

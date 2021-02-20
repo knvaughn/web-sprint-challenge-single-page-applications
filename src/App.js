@@ -56,12 +56,14 @@ const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [order, setOrder] = useState({});
+  const [price, setPrice] = useState(17.99);
 
   const postPizzaOrder = (pizza) => {
     axios.post('https://reqres.in/api/pizza', pizza)
     .then((response) => {
       console.log(response.data);
       setOrder({...order, ...response.data});
+      setFormValues(initialFormValues);
     })
     .catch((error) => {
       console.log(error);
@@ -99,6 +101,7 @@ const App = () => {
             inputChange={inputChange}
             formValues={formValues}
             formErrors={formErrors}
+            price={price}
           />
         </Route>
         <Route exact path="/">
