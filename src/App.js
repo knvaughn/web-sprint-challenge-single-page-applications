@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Route, Link, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Route, Link, Switch, useHistory } from 'react-router-dom';
 import Home from './Components/Home';
 import Form from './Components/Form';
+import Order from './Components/Order';
 import FormSchema from './validation/FormSchema';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -52,11 +53,20 @@ const initialFormErrors = {
   quantity: ''
 }
 
+const initialDisabled = true;
+
 const App = () => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [order, setOrder] = useState({});
   const [price, setPrice] = useState(17.99);
+  const [disabled, setDisabled] = useState(initialDisabled) 
+
+  let history = useHistory();
+
+  const routeToOrder = () => {
+      history.push("/pizza/order");
+  }
 
   const postPizzaOrder = (pizza) => {
     axios.post('https://reqres.in/api/pizza', pizza)
@@ -64,6 +74,7 @@ const App = () => {
       console.log(response.data);
       setOrder({...order, ...response.data});
       setFormValues(initialFormValues);
+      routeToOrder();
     })
     .catch((error) => {
       console.log(error);
@@ -85,6 +96,11 @@ const App = () => {
     })
   }
 
+  useEffect(() => {
+    FormSchema.isValid(formValues)
+    .then(isValid => setDisabled(!isValid))
+  }, [formValues])
+
   return (
     <div>
       <header>
@@ -95,6 +111,9 @@ const App = () => {
         </nav>
       </header>
       <Switch>
+        <Route path="/pizza/order">
+          <Order order={order} />
+        </Route>
         <Route path="/pizza">
           <Form 
             submit={formSubmit} 
@@ -102,6 +121,7 @@ const App = () => {
             formValues={formValues}
             formErrors={formErrors}
             price={price}
+            disabled={disabled}
           />
         </Route>
         <Route exact path="/">

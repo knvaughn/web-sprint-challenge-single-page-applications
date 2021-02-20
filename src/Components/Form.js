@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Form = (props) => {
-    const { submit, inputChange, formValues, formErrors, price } = props;
+    const { submit, inputChange, formValues, formErrors, price, disabled } = props;
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -272,7 +272,7 @@ const Form = (props) => {
                         />
                         <div className="form-error">{formErrors.quantity}</div>
                     </div>
-                    <button data-cy="submit">Add to Order ${formValues.glutenFreeCrust ? formValues.quantity * (price + 1) : price * formValues.quantity}</button>
+                    <button disabled={disabled} data-cy="submit">Add to Order ${formValues.glutenFreeCrust ? formValues.quantity * (price + 1) : price * formValues.quantity}</button>
                 </div>
             </form>
         </div>
