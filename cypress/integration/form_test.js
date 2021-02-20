@@ -5,6 +5,7 @@ describe("Pizza Form", () => {
 
     const name = () => cy.get('[data-cy=name]');
     const size = () => cy.get('[data-cy=size]');
+    const originalRed = () => cy.get('[data-cy=originalRed]')
     const pepperoni = () => cy.get('[data-cy=pepperoni]');
     const pineapple = () => cy.get('[data-cy=pineapple]');
     const submitBtn = () => cy.get('[data-cy=submit]')
@@ -35,9 +36,12 @@ describe("Pizza Form", () => {
             .type('Kristin Vaughn');
         size()
             .select('medium');
+        originalRed()
+            .check();
         pepperoni()
             .check();
         submitBtn()
+            .should('not.be.disabled')
             .click();
     })
 })
